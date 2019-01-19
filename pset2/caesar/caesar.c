@@ -17,6 +17,11 @@ int main(int argc, string argv[])
         return 1;
     }
     int key = atoi(argv[1]);
+    if (key < 0)
+    {
+        printf("Please, specify a non-negative integer in arguments\n");
+        return 1;
+    }
     string input = get_string("plaintext: ");
     int input_len = strlen(input);
     char cipher[input_len + 1];
@@ -27,13 +32,11 @@ int main(int argc, string argv[])
         {
             cipher[i] = (cipher[i] + key - 97) % 26;
             cipher[i] += 97;
-            /*input[i] = cipher[i];*/
         }
         else if (isalpha(input[i]) && isupper(input[i]))
         {
             cipher[i] = (cipher[i] + key - 65) % 26;
             cipher[i] += 65;
-            /*input[i] = cipher[i];*/
         }
         else if (i == input_len)
         {
