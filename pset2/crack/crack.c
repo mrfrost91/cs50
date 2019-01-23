@@ -51,9 +51,9 @@ int main(int argc, string argv[])
                 return 0;
             }
         }
-}
+    }
     // iterate over first three digits
-        for (int i = 0; i < alphabet_len; i++)
+    for (int i = 0; i < alphabet_len; i++)
     {
         pass[0] = alphabet[i];
         x++;
@@ -61,22 +61,22 @@ int main(int argc, string argv[])
         {
             pass[1] = alphabet[j];
             x++;
-        for (int k = 0; k < alphabet_len; k++)
-        {
-            pass[2] = alphabet[k];
-            x++;
-            resultHash = crypt(pass, salt);
-            if (strcmp(argv[1], resultHash) == 0)
+            for (int k = 0; k < alphabet_len; k++)
             {
-                printf("password: %s, %ld iterations\n", pass, x);
-                printf("%s, %s\n", resultHash, argv[1]);
-                return 0;
+                pass[2] = alphabet[k];
+                x++;
+                resultHash = crypt(pass, salt);
+                if (strcmp(argv[1], resultHash) == 0)
+                {
+                    printf("password: %s, %ld iterations\n", pass, x);
+                    printf("%s, %s\n", resultHash, argv[1]);
+                    return 0;
+                }
             }
         }
-}
-}
+    }
     // iterate over first four digits
-        for (int i = 0; i < alphabet_len; i++)
+    for (int i = 0; i < alphabet_len; i++)
     {
         pass[0] = alphabet[i];
         x++;
@@ -84,27 +84,27 @@ int main(int argc, string argv[])
         {
             pass[1] = alphabet[j];
             x++;
-        for (int k = 0; k < alphabet_len; k++)
-        {
-            pass[2] = alphabet[k];
-            x++;
-        for (int l = 0; l < alphabet_len; l++)
-        {
-            pass[3] = alphabet[l];
-            x++;
-            resultHash = crypt(pass, salt);
-            if (strcmp(argv[1], resultHash) == 0)
+            for (int k = 0; k < alphabet_len; k++)
             {
-                printf("password: %s, %ld iterations\n", pass, x);
-                printf("%s, %s\n", resultHash, argv[1]);
-                return 0;
+                pass[2] = alphabet[k];
+                x++;
+                for (int l = 0; l < alphabet_len; l++)
+                {
+                    pass[3] = alphabet[l];
+                    x++;
+                    resultHash = crypt(pass, salt);
+                    if (strcmp(argv[1], resultHash) == 0)
+                    {
+                        printf("password: %s, %ld iterations\n", pass, x);
+                        printf("%s, %s\n", resultHash, argv[1]);
+                        return 0;
+                    }
+                }
             }
         }
-}
-}
-}
+    }
     // iterate over all five digits
-        for (int i = 0; i < alphabet_len; i++)
+    for (int i = 0; i < alphabet_len; i++)
     {
         pass[0] = alphabet[i];
         x++;
@@ -112,26 +112,26 @@ int main(int argc, string argv[])
         {
             pass[1] = alphabet[j];
             x++;
-        for (int k = 0; k < alphabet_len; k++)
-        {
-            pass[2] = alphabet[k];
-            x++;
-        for (int l = 0; l < alphabet_len; l++)
-        {
-            pass[3] = alphabet[l];
-            x++;
-        for (int m = 0; m < alphabet_len; m++)
-            pass[4] = alphabet[m];
-            x++;
-            resultHash = crypt(pass, salt);
-            if (strcmp(argv[1], resultHash) == 0)
+            for (int k = 0; k < alphabet_len; k++)
             {
-                printf("password: %s, %ld iterations\n", pass, x);
-                printf("%s, %s\n", resultHash, argv[1]);
-                return 0;
+                pass[2] = alphabet[k];
+                x++;
+                for (int l = 0; l < alphabet_len; l++)
+                {
+                    pass[3] = alphabet[l];
+                    x++;
+                    for (int m = 0; m < alphabet_len; m++)
+                    pass[4] = alphabet[m];
+                    x++;
+                    resultHash = crypt(pass, salt);
+                    if (strcmp(argv[1], resultHash) == 0)
+                    {
+                        printf("password: %s, %ld iterations\n", pass, x);
+                        printf("%s, %s\n", resultHash, argv[1]);
+                        return 0;
+                    }
+                }
             }
         }
-}
-}
-}
+    }
 }
