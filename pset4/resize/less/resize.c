@@ -10,12 +10,17 @@ int main(int argc, char *argv[])
     // ensure proper usage
     if (argc != 4)
     {
-        fprintf(stderr, "Usage: resie n infile outfile\n");
+        fprintf(stderr, "Usage: resize n infile outfile\n");
         return 1;
     }
 
     // remember filenames
     int n = atoi(argv[1]);
+    if (n <= 0)
+    {
+        fprintf(stderr, "Please specify a positive integer\n");
+        return 1;
+    }
     char *infile = argv[2];
     char *outfile = argv[3];
 
@@ -109,9 +114,11 @@ int main(int argc, char *argv[])
             {
                 fputc(0x00, outptr);
             }
+            if (j % 2 == 0)
+            {
             fseek(inptr, seek_offset, SEEK_CUR);
+            }
         }
-        fseek(inptr, abs(seek_offset), SEEK_CUR);
     }
 
     // close infile
