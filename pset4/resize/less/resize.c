@@ -114,11 +114,9 @@ int main(int argc, char *argv[])
             {
                 fputc(0x00, outptr);
             }
-            if (j % 2 == 0)
-            {
             fseek(inptr, seek_offset, SEEK_CUR);
-            }
         }
+        fseek(inptr, abs(seek_offset), SEEK_CUR);
     }
 
     // close infile
