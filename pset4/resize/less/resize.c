@@ -16,9 +16,9 @@ int main(int argc, char *argv[])
 
     // remember filenames
     int n = atoi(argv[1]);
-    if (n <= 0)
+    if (n < 1 || n > 100)
     {
-        fprintf(stderr, "Please specify a positive integer\n");
+        fprintf(stderr, "Please specify an integer between 1 and 100\n");
         return 1;
     }
     char *infile = argv[2];
@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
 
     //calculate seek offset
     int seek_offset = -((sizeof(RGBTRIPLE) * old_width) + old_padding);
-
     // write outfile's BITMAPFILEHEADER
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
 
@@ -87,6 +86,7 @@ int main(int argc, char *argv[])
 
     for (int i = 0, biHeight = abs(old_height); i < biHeight; i++)
     {
+
         for (int j = 0; j < n; j++)
         {
             // iterate over pixels in scanline
@@ -114,9 +114,11 @@ int main(int argc, char *argv[])
             {
                 fputc(0x00, outptr);
             }
-            fseek(inptr, seek_offset, SEEK_CUR);
+            if (j != n - 1)
+            {
+                fseek(inptr, seek_offset, SEEK_CUR);
+            }
         }
-        fseek(inptr, abs(seek_offset), SEEK_CUR);
     }
 
     // close infile
